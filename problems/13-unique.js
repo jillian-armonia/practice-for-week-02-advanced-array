@@ -16,7 +16,21 @@ console.log(unique(['a', 'b', 'c', 'b'])); // ['a', 'b', 'c']
 
 let unique = function(array) {
     // Your code here
+    let newArray = array.reduce(function(list, num){
+        if (list.includes(num)){
+            return list;
+        } else {
+            list.push(num);
+            return list;
+        }
+    }, [])
+
+    return newArray;
 };
+
+console.log(unique([1, 1, 2, 3, 3])); // [1, 2, 3]
+console.log(unique([11, 7, 8, 10, 8, 7, 7])); // [11, 7, 8, 10]
+console.log(unique(['a', 'b', 'c', 'b'])); // ['a', 'b', 'c']
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
 
@@ -24,4 +38,4 @@ try {
     module.exports = unique;
 } catch (e) {
     module.exports = null;
-}
+}

@@ -30,12 +30,40 @@ console.log(repeatingTranslate("her family flew to France"));   // "herer family
 
 let repeatingTranslate = function(sentence) {
     // Your code here
+    let words = sentence.split(" ");
+    let translated = words.map(function(word){
+        if (word.length < 3){
+            return word;
+        } else {
+            return translateWord(word);
+        }
+    });
+
+    return translated.join(" ")
 };
 
 
 let translateWord = function(word) {
     // Your code here
+    let vowels = "aeiou";
+    let ending = word[word.length - 1];
+
+    if (vowels.includes(ending)){
+        return word + word;
+    } else {
+        for (let i = word.length - 1; i >= 0; i--){
+            if (vowels.includes(word[i])){
+                return word + word.slice(i);
+            }
+        }
+    }
+
 };
+
+console.log(repeatingTranslate("we like to go running fast"));  // "we likelike to go runninging fastast"
+console.log(repeatingTranslate("he cannot find the trash"));    // "he cannotot findind thethe trashash"
+console.log(repeatingTranslate("pasta is my favorite dish"));   // "pastapasta is my favoritefavorite dishish"
+console.log(repeatingTranslate("her family flew to France"));   // "herer familyily flewew to FranceFrance"
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
 
@@ -43,4 +71,4 @@ try {
     module.exports = repeatingTranslate;
 } catch (e) {
     module.exports = null;
-}
+}
